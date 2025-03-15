@@ -18,12 +18,14 @@ import com.myapp.repository.PostRepository;
 import com.myapp.service.PostService;
 
 @Service
+@AllArgsConstructor
 public class PostServiceImple implements PostService{
 
-	@Autowired
+//	@Autowired
 	private PostRepository postRepository;
-	@Autowired
+//	@Autowired
 	private ModelMapper mapper;
+
 	@Override
 	public PostDto createPost(PostDto postDto) {
 		Post post = mapToEntity(postDto);

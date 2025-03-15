@@ -24,13 +24,14 @@ import com.myapp.service.CommentService;
 import net.bytebuddy.asm.Advice.This;
 
 @Service
+@AllArgsConstructor
 public class CommentServiceImple implements CommentService {
 
-	@Autowired
+//	@Autowired
 	private ModelMapper mapper;
-	@Autowired
+//	@Autowired
 	private CommentRepository commentRepository;
-	@Autowired
+//	@Autowired
 	private PostRepository postRepository;
 	
 	// get Comment By postId

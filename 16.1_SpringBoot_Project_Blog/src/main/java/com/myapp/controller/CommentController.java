@@ -17,9 +17,9 @@ import com.myapp.service.CommentService;
 
 @RestController
 @RequestMapping("/api")
+@AllArgsConstructor
 public class CommentController {
 
-	@Autowired
 	private CommentService commentService;
 	
 	@GetMapping("/{postId}/comments")

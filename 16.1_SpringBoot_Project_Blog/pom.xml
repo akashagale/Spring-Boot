@@ -16,7 +16,7 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<name>16_SpringBoot_Project_Blog</name>
 	<description>Spring Boot Project_Blog</description>
 	<properties>
-		<java.version>16</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
