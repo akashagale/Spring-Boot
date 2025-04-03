@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="719dfb9f-2d1b-4770-b571-d2503b82cbf8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/exception/ECommerceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/exception/handler/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/exception/payload/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/restcontrollers/PublicController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/service/Impl/PublicServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/service/PublicService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Spring Boot Public Repo.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/EcommerceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/ECommerce.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/Entity/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/entity/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/Entity/CartProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/entity/CartProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/Entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/entity/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/Entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/Entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/Repository/ProductsRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/repository/ProductRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/ServletInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/java/com/product/app/ServletInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/ecommerce/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;akashagale&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/akashagale/Spring-Boot.git&quot;,
+    &quot;accountId&quot;: &quot;23205052-f6fb-42ab-b625-d309f6832e24&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2uJSlB6X29PKDQaNY9W7Ry6mrv3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.SpringbootRestApiApplication.executor": "Coverage",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/Spring Boot Public Repo/ecommerce-service",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "two.files.diff.last.used.folder": "E:/Spring Boot Public Repo"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="SpringbootRestApiApplication" type="Application" factoryName="Application">
+      <module name="Spring Boot Public Repo" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/18_Springboot-blog-rest-api_JWT" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="719dfb9f-2d1b-4770-b571-d2503b82cbf8" name="Changes" comment="" />
+      <created>1741965332224</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1741965332224</updated>
+    </task>
+    <servers />
+  </component>
+</project>
