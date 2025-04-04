@@ -1,12 +1,14 @@
 package com.app.ecommerce.service;
 
-import com.app.ecommerce.entity.Product;
+import com.app.ecommerce.dto.ProductDto;
+
 import java.util.List;
 
 public interface PublicService {
-    public List<Product> getProducts(String productName);
 
-    List<Product> searchProduct(String productName);
+    List<ProductDto> searchProduct(String productName);
 
-    Product findById(Integer id);
+    List<ProductDto> searchProductNameOrCategoryName(String keyword);
+
+    ProductDto findById(Integer id);
 }

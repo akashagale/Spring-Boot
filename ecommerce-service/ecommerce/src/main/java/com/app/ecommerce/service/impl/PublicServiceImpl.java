@@ -1,7 +1,8 @@
 package com.app.ecommerce.service.impl;
 
+import com.app.ecommerce.converter.Converter;
+import com.app.ecommerce.dto.ProductDto;
 import com.app.ecommerce.entity.Product;
-import com.app.ecommerce.exception.ECommerceException;
 import com.app.ecommerce.exception.ResourceNotFoundException;
 import com.app.ecommerce.repo.ProductRepo;
 import com.app.ecommerce.service.PublicService;
@@ -16,29 +17,29 @@ public class PublicServiceImpl implements PublicService {
 
     private final ProductRepo productRepo;
 
-    @Autowired
     public PublicServiceImpl(ProductRepo productRepo) {
         this.productRepo = productRepo;
     }
 
     @Override
-    public List<Product> getProducts(String productName) {
-        return this.productRepo.findByProductName(productName);
+    public List<ProductDto> searchProduct(String productName) {
+        List<Product> product = this.productRepo.searchProduct(productName);
+        return Converter.ProductListToProductDtoList(product);
     }
 
     @Override
-    public List<Product> searchProduct(String productName) {
-        List<Product> productList = this.productRepo.searchProduct(productName);
-        System.out.println(productList.toString());
-        return productList;
+    public List<ProductDto> searchProductNameOrCategoryName(String keyword) {
+        List<Product> productList = this.productRepo.searchProductNameOrCategoryName(keyword,keyword);
+        return Converter.ProductListToProductDtoList(productList);
     }
 
     @Override
-    public Product findById(Integer id) {
+    public ProductDto findById(Integer id) {
         Optional<Product> product = this.productRepo.findById(id);
         if (product.isEmpty()){
             throw  new ResourceNotFoundException("Product not found");
         }
-        return product.get();
+        ProductDto productDto = Converter.OptionalProductToProductDto(product);
+        return productDto;
     }
 }

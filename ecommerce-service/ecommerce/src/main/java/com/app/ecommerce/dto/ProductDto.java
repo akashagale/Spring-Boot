@@ -1,36 +1,26 @@
-package com.app.ecommerce.entity;
+package com.app.ecommerce.dto;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "product")
-public class Product {
+public class ProductDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
-
     private String productName;
     private String productDescription;
     private Double price;
+    private CategoryDto categoryDto;
 
-//    @ManyToOne
-//    @JsonIgnore
-//    private User seller;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-    public Product() {
+    public ProductDto() {
     }
 
-    public Product(Integer productId, String productName, String productDescription, Double price, Category category) {
+    public ProductDto(Integer productId, String productName, String productDescription, Double price, CategoryDto categoryDto) {
         this.productId = productId;
         this.productName = productName;
         this.productDescription = productDescription;
         this.price = price;
-        this.category = category;
+        this.categoryDto = categoryDto;
     }
 
     public Integer getProductId() {
@@ -65,22 +55,22 @@ public class Product {
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
+    public CategoryDto getCategoryDto() {
+        return categoryDto;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryDto(CategoryDto categoryDto) {
+        this.categoryDto = categoryDto;
     }
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "ProductDto{" +
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", productDescription='" + productDescription + '\'' +
                 ", price=" + price +
-                ", category=" + category +
+                ", categoryDto=" + categoryDto +
                 '}';
     }
 }
