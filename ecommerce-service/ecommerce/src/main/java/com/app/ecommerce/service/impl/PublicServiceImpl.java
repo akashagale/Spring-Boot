@@ -3,12 +3,15 @@ package com.app.ecommerce.service.impl;
 import com.app.ecommerce.converter.Converter;
 import com.app.ecommerce.dto.ProductDto;
 import com.app.ecommerce.entity.Product;
+import com.app.ecommerce.exception.ECommerceException;
 import com.app.ecommerce.exception.ResourceNotFoundException;
+import com.app.ecommerce.handler.GlobalExceptionHandler;
 import com.app.ecommerce.repo.ProductRepo;
 import com.app.ecommerce.service.PublicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,14 +25,18 @@ public class PublicServiceImpl implements PublicService {
     }
 
     @Override
-    public List<ProductDto> searchProduct(String productName) {
+    public List<ProductDto> searchProduct(@Valid String productName) {
+        if (productName == null || productName.isEmpty())
+            throw new ECommerceException("Product name cannot be empty");
+
         List<Product> product = this.productRepo.searchProduct(productName);
         return Converter.ProductListToProductDtoList(product);
     }
 
     @Override
     public List<ProductDto> searchProductNameOrCategoryName(String keyword) {
-        List<Product> productList = this.productRepo.searchProductNameOrCategoryName(keyword,keyword);
+        List<Product> productList = this.productRepo.searchProductsByKeyword(keyword);
+        System.out.println(productList);
         return Converter.ProductListToProductDtoList(productList);
     }
 

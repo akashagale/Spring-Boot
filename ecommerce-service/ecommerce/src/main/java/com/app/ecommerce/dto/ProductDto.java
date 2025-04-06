@@ -65,13 +65,13 @@ public class ProductDto {
 
     @Override
     public String toString() {
-        return "ProductDto{" +
+        return "ProductDto[" +
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", productDescription='" + productDescription + '\'' +
                 ", price=" + price +
                 ", categoryDto=" + categoryDto +
-                '}';
+                ']';
     }
 }
 

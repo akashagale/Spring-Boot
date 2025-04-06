@@ -5,7 +5,6 @@ public class CategoryDto {
     private String categoryName;
 
 
-
     public CategoryDto() {
     }
 
@@ -23,8 +22,8 @@ public class CategoryDto {
 
     @Override
     public String toString() {
-        return "CategoryDto{" +
+        return "CategoryDto[" +
                 "categoryName='" + categoryName + '\'' +
-                '}';
+                ']';
     }
 }

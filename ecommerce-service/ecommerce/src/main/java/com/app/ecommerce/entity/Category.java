@@ -3,6 +3,8 @@ package com.app.ecommerce.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -10,22 +12,24 @@ import java.util.List;
 public class Category {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer categoryId;
 
+    @NotNull(message = "Category name is required")
+    @Min(value = 3, message = "Category name must be at least 5 characters long")
+    @Column(unique = true)
     private String categoryName;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "category")
-    private List<Product> productDetails;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "category")
+//    private List<Product> productDetails;
 
     public Category() {
     }
 
-    public Category(Integer categoryId, String categoryName, List<Product> productDetails) {
-        this.categoryId = categoryId;
+    public Category(String categoryName) {
         this.categoryName = categoryName;
-        this.productDetails = productDetails;
     }
 
     public Integer getCategoryId() {
@@ -44,20 +48,8 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public List<Product> getProductDetails() {
-        return productDetails;
-    }
-
-    public void setProductDetails(List<Product> productDetails) {
-        this.productDetails = productDetails;
-    }
-
     @Override
     public String toString() {
-        return "Category{" +
-                "categoryId=" + categoryId +
-                ", categoryName='" + categoryName + '\'' +
-                ", productDetails=" + productDetails +
-                '}';
+        return "Category [categoryId=" + categoryId +", categoryName=" + categoryName +"]";
     }
 }

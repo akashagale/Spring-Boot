@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
         String message = ex.getMessage().toString();
         Date date = new Date();
         ApiResponse payload = new ApiResponse(message, false, date);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(payload);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)

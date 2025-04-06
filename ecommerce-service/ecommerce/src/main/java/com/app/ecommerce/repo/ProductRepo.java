@@ -14,7 +14,12 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     @Query(value = "select * from product p where p.product_name like %:productName%",nativeQuery = true)
     List<Product> searchProduct(@Param("productName") String productName);
 
-    @Query(value = "select * from product p inner join category c on p.product_id = c.category_id where p.product_name like %:productName% or c.category_id like %:categoryName%",nativeQuery = true)
-    List<Product> searchProductNameOrCategoryName(@Param("productName") String productName,
-                                                  @Param("categoryName") String categoryName);
+    @Query(value = """
+    SELECT p.*
+    FROM product p
+    INNER JOIN category c ON p.category_id = c.category_id
+    WHERE LOWER(p.product_name) LIKE LOWER(CONCAT('%', :keyword, '%'))
+       OR LOWER(c.category_name) LIKE LOWER(CONCAT('%', :keyword, '%'))
+    """, nativeQuery = true)
+    List<Product> searchProductsByKeyword(@Param("keyword") String keyword);
 }

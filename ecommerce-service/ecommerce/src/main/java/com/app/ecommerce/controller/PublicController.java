@@ -6,11 +6,15 @@ import com.app.ecommerce.service.PublicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
+@Validated
 public class PublicController {
 
     private final PublicService publicService;
@@ -20,32 +24,24 @@ public class PublicController {
         this.publicService = publicService;
     }
 
-
-    @GetMapping("/test/{name}")
-    public ResponseEntity<?> test(@PathVariable String name) {
-        return new ResponseEntity<>(name, HttpStatus.OK);
-    }
-
-    @GetMapping("search/{keyword}")
-    public ResponseEntity<List<ProductDto>> searchProducts(@PathVariable(name = "keyword") String keyword) {
+    @GetMapping("search")
+    public ResponseEntity<List<ProductDto>> searchProducts(
+           @Valid @RequestParam(name = "keyword", required = true) String keyword) {
         List<ProductDto> productDtoList = this.publicService.searchProduct(keyword);
         return new ResponseEntity<>(productDtoList, HttpStatus.OK);
     }
 
-    @GetMapping("searchby/{keyword}")
-    public ResponseEntity<List<ProductDto>> searchByProductNameOrCategory(@PathVariable(name = "keyword") String keyword) {
+    @GetMapping("searchby")
+    public ResponseEntity<List<ProductDto>> searchByProductNameOrCategory
+            (@RequestParam(name = "keyword", required = true) String keyword) {
         List<ProductDto> productDtoList = this.publicService.searchProductNameOrCategoryName(keyword);
         return new ResponseEntity<>(productDtoList, HttpStatus.OK);
     }
-
 
     @GetMapping("product/{id}")
     public ResponseEntity<ProductDto> findById(@PathVariable(name = "id") Integer id) {
         ProductDto productDto = this.publicService.findById(id);
         return new ResponseEntity<>(productDto, HttpStatus.OK);
     }
-
-
-
 
 }

@@ -5,14 +5,19 @@ import com.app.ecommerce.dto.ProductDto;
 import com.app.ecommerce.entity.Category;
 import com.app.ecommerce.entity.Product;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class Converter {
 
-    public static ProductDto ProductToProductDto(Product product){
+    public static ProductDto ProductToProductDto(
+            @NotNull(message = "Product is required" ) Product product){
         ProductDto productDto = new ProductDto();
+
+        if (product == null) return null;
+
         productDto.setProductId(product.getProductId());
         productDto.setProductName(product.getProductName());
         productDto.setPrice(product.getPrice());
@@ -21,22 +26,34 @@ public class Converter {
         return productDto;
     }
 
-    private static CategoryDto CategoryToCategoryDto(Category category) {
+    private static CategoryDto CategoryToCategoryDto(
+            @NotNull(message = "Category is required" ) Category category) {
         CategoryDto categoryDto = new CategoryDto();
+
+        if (category == null) return null;
+
         categoryDto.setCategoryName(category.getCategoryName());
         return categoryDto;
     }
 
-    public static List<ProductDto> ProductListToProductDtoList(List<Product> productList) {
+    public static List<ProductDto> ProductListToProductDtoList(
+            @NotNull(message = "Product list is required") List<Product> productList) {
         ArrayList<ProductDto> productDtoDtoList = new ArrayList<>();
-        for (com.app.ecommerce.entity.Product product : productList) {
+
+        if (productList.isEmpty()) return null;
+
+        for (Product product : productList) {
             productDtoDtoList.add(ProductToProductDto(product));
         }
         return productDtoDtoList;
     }
 
-    public static ProductDto OptionalProductToProductDto(Optional<Product> product) {
+    public static ProductDto OptionalProductToProductDto(
+            @NotNull(message = "Product is required" ) Optional<Product> product) {
         ProductDto productDto = new ProductDto();
+
+        if (product.isEmpty()) return null;
+
         productDto.setProductId(product.get().getProductId());
         productDto.setProductName(product.get().getProductName());
         productDto.setProductDescription(product.get().getProductDescription());

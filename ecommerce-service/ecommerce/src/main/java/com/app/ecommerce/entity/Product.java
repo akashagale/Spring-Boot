@@ -2,6 +2,10 @@ package com.app.ecommerce.entity;
 
 import jakarta.persistence.*;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Entity
 @Table(name = "product")
 public class Product {
@@ -10,8 +14,15 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
 
+    @NotNull(message = "Product name is required")
+    @Size(min = '5', message = "Product name must be at least 5 characters long")
     private String productName;
+
+    @NotNull(message = "Product description is required")
+    @Size(min = '5', message = "Product description must be at least 5 characters long")
     private String productDescription;
+
+    @Min(value = 1, message = "Price must be at least 1")
     private Double price;
 
 //    @ManyToOne
@@ -19,7 +30,8 @@ public class Product {
 //    private User seller;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", referencedColumnName = "categoryId")
+    @NotNull
     private Category category;
 
     public Product() {
