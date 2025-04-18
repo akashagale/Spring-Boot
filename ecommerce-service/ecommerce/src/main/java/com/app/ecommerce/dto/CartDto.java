@@ -1,39 +1,26 @@
-package com.app.ecommerce.entity;
+package com.app.ecommerce.dto;
 
+import com.app.ecommerce.entity.CartProduct;
+import com.app.ecommerce.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
-public class Cart {
+public class CartDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cartId;
-
     private Double totalAmount;
-
-    @JsonIgnore
-    @OneToOne
-    private User user;
-
-    @OneToMany(mappedBy = "cart")
     private List<CartProduct> cartProducts;
 
-    public Cart() {
+    public CartDto() {
     }
 
-    public Cart(Integer cartId, Double totalAmount, User user, List<CartProduct> cartProducts) {
+    public CartDto(Integer cartId, Double totalAmount, List<CartProduct> cartProducts) {
         this.cartId = cartId;
         this.totalAmount = totalAmount;
-        this.user = user;
         this.cartProducts = cartProducts;
     }
-
 
     public Integer getCartId() {
         return cartId;
@@ -51,14 +38,6 @@ public class Cart {
         this.totalAmount = totalAmount;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public List<CartProduct> getCartProducts() {
         return cartProducts;
     }
@@ -69,7 +48,7 @@ public class Cart {
 
     @Override
     public String toString() {
-        return "Cart{" +
+        return "CartDto{" +
                 "cartId=" + cartId +
                 ", totalAmount=" + totalAmount +
                 ", cartProducts=" + cartProducts +

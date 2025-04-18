@@ -5,6 +5,7 @@ import com.app.ecommerce.dto.RegisterDto;
 import com.app.ecommerce.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.logging.Logger;
@@ -24,6 +25,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
         String  token = authService.login(loginDto);
+        if (token == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         return ResponseEntity.status(HttpStatus.OK).body(token);
     }
 
