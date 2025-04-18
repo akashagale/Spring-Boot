@@ -25,12 +25,12 @@ public class PublicController {
         this.publicService = publicService;
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<ProductDto>> searchProducts(
-           @Valid @RequestParam(name = "keyword", required = true) String keyword) {
-        List<ProductDto> productDtoList = this.publicService.searchProduct(keyword);
-        return new ResponseEntity<>(productDtoList, HttpStatus.OK);
-    }
+//    @GetMapping("/search")
+//    public ResponseEntity<List<ProductDto>> searchProducts(
+//           @Valid @RequestParam(name = "keyword", required = true) String keyword) {
+//        List<ProductDto> productDtoList = this.publicService.searchProduct(keyword);
+//        return new ResponseEntity<>(productDtoList, HttpStatus.OK);
+//    }
 
     @GetMapping("/searchby")
     public ResponseEntity<List<ProductDto>> searchByProductNameOrCategory

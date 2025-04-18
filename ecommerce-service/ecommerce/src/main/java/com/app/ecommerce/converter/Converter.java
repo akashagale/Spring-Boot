@@ -1,7 +1,9 @@
 package com.app.ecommerce.converter;
 
+import com.app.ecommerce.dto.CartDto;
 import com.app.ecommerce.dto.CategoryDto;
 import com.app.ecommerce.dto.ProductDto;
+import com.app.ecommerce.entity.Cart;
 import com.app.ecommerce.entity.Category;
 import com.app.ecommerce.entity.Product;
 
@@ -26,7 +28,7 @@ public class Converter {
         return productDto;
     }
 
-    private static CategoryDto CategoryToCategoryDto(
+    public static CategoryDto CategoryToCategoryDto(
             @NotNull(message = "Category is required" ) Category category) {
         CategoryDto categoryDto = new CategoryDto();
 
@@ -60,5 +62,29 @@ public class Converter {
         productDto.setPrice(product.get().getPrice());
         productDto.setCategoryDto(CategoryToCategoryDto(product.get().getCategory()));
         return productDto;
+    }
+
+    public static List<CartDto> CartListToCartDtoList(List<Cart> cartList) {
+        ArrayList<CartDto> cartDtoList = new ArrayList<>();
+        for (Cart cart : cartList) {
+            cartDtoList.add(CartToCartDto(cart));
+        }
+        return cartDtoList;
+    }
+
+    public static CartDto CartToCartDto(Cart cart) {
+        CartDto cartDto = new CartDto();
+        cartDto.setCartId(cart.getCartId());
+        cartDto.setTotalAmount(cart.getTotalAmount());
+        cartDto.setCartProducts(cart.getCartProducts());
+        return cartDto;
+    }
+
+    public static Cart CartDtoToCart(CartDto cartDto) {
+        Cart cart = new Cart();
+        cart.setCartId(cartDto.getCartId());
+        cart.setTotalAmount(cartDto.getTotalAmount());
+        cart.setCartProducts(cartDto.getCartProducts());
+        return cart;
     }
 }

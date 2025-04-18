@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="879a1c0c-133f-4b5e-ad61-c3fa8bdd6ae1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/config/AuthEntryPointJwt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/config/AuthTokenFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/controller/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/dto/LoginDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/service/AuthService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/service/impl/AuthServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/utils/JwtUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecommerce/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecommerce/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/controller/PublicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/controller/PublicController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/repo/ProductRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/repo/ProductRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/service/impl/PublicServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/src/main/java/com/app/ecommerce/service/impl/PublicServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +43,7 @@
     "com.codeium.enabled": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Spring Boot Public Repo/ecommerce-service",
+    "last_opened_file_path": "E:/Spring Boot Public Repo/ecommerce-service/ecommerce",
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0"

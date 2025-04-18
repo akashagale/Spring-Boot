@@ -23,7 +23,7 @@ import java.util.Date;
 public class JwtUtils {
 
     private String jwtSecret = "qazxcvbnm1234567890QAZXCVBNMdgdgdgtryjghfeetrfgdfgdgtryrtygrytrtyffweferyydgdgreretretr";
-    private long jwtExpirationMs = 300000;
+    private long jwtExpirationMs = 3000000;
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
 

@@ -32,13 +32,5 @@ public class CartProduct {
         this.product = product;
     }
 
-    @Override
-    public String toString() {
-        return "CartProduct{" +
-                "cpId=" + cpId +
-                ", cart=" + cart +
-                ", product=" + product +
-                ", quantity=" + quantity +
-                '}';
-    }
+
 }
