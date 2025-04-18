@@ -36,6 +36,10 @@ public class PublicServiceImpl implements PublicService {
     @Override
     public List<ProductDto> searchProductNameOrCategoryName(String keyword) {
         List<Product> productList = this.productRepo.searchProductsByKeyword(keyword);
+
+        if (productList.isEmpty()){
+            throw new ResourceNotFoundException("Product not found");
+        }
         System.out.println(productList);
         return Converter.ProductListToProductDtoList(productList);
     }

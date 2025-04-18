@@ -1,0 +1,29 @@
+=======================================================================================================================
+@Query(value = """
+    SELECT p.*
+    FROM product p
+    INNER JOIN category c ON p.category_id = c.category_id
+    WHERE LOWER(p.product_name) LIKE LOWER(CONCAT('%', :keyword, '%'))
+       OR LOWER(c.category_name) LIKE LOWER(CONCAT('%', :keyword, '%'))
+    """, nativeQuery = true)
+    List<Product> searchProductsByKeyword(@Param("keyword") String keyword);
+
+				===================================Problem=========================================
+
+SELECT * FROM product p
+JOIN category c ON ...
+
+When using SELECT * with a JOIN, both tables might have columns with the same names (like category_id, name, etc.). When JPA tries to map this result to a single entity (like Product), it gets confused because the result set has duplicate column names — hence the NonUniqueDiscoveredSqlAliasException.
+
+				===================================Solution=========================================
+
+SELECT p.*
+
+This tells the query to only select columns from the product table, which match exactly with your Product entity. This way, JPA can safely map the result to Product objects because:
+
+There's no duplication of column names (no conflict).
+
+Only the fields defined in the Product entity are returned.	
+
+
+=======================================================================================================================

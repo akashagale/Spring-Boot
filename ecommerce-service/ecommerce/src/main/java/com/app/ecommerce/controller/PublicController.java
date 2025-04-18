@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @Validated
+@RequestMapping("/api/public")
 public class PublicController {
 
     private final PublicService publicService;
@@ -24,21 +25,21 @@ public class PublicController {
         this.publicService = publicService;
     }
 
-    @GetMapping("search")
+    @GetMapping("/search")
     public ResponseEntity<List<ProductDto>> searchProducts(
            @Valid @RequestParam(name = "keyword", required = true) String keyword) {
         List<ProductDto> productDtoList = this.publicService.searchProduct(keyword);
         return new ResponseEntity<>(productDtoList, HttpStatus.OK);
     }
 
-    @GetMapping("searchby")
+    @GetMapping("/searchby")
     public ResponseEntity<List<ProductDto>> searchByProductNameOrCategory
             (@RequestParam(name = "keyword", required = true) String keyword) {
         List<ProductDto> productDtoList = this.publicService.searchProductNameOrCategoryName(keyword);
         return new ResponseEntity<>(productDtoList, HttpStatus.OK);
     }
 
-    @GetMapping("product/{id}")
+    @GetMapping("/product/{id}")
     public ResponseEntity<ProductDto> findById(@PathVariable(name = "id") Integer id) {
         ProductDto productDto = this.publicService.findById(id);
         return new ResponseEntity<>(productDto, HttpStatus.OK);

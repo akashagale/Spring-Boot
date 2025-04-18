@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface ProductRepo extends JpaRepository<Product, Integer> {
 
     @Query(value = "select * from product p where p.product_name like %:productName%",nativeQuery = true)
