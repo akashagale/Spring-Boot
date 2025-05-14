@@ -1,0 +1,6 @@
+package com.app.ecommerce.dto;
+
+public class PostCategoryDto {
+    private String categoryName;
+    private Integer categoryId;
+}

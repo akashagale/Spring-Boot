@@ -1,7 +1,9 @@
 package com.app.ecommerce.utils;
 
+import com.app.ecommerce.entity.User;
 import com.app.ecommerce.exception.ECommerceException;
 import com.app.ecommerce.handler.GlobalExceptionHandler;
+import com.app.ecommerce.repo.UserRepository;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -11,13 +13,16 @@ import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
+import java.util.Optional;
 
 @Component
 public class JwtUtils {
@@ -26,6 +31,9 @@ public class JwtUtils {
     private long jwtExpirationMs = 3000000;
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
+
+    @Autowired
+    private UserRepository userRepository;
 
     // validate Jwt token
     public boolean validateJwtToken(String token){
@@ -71,5 +79,26 @@ public class JwtUtils {
 
         logger.debug("JwtUtils inside generateToken {}", token);
         return token;
+    }
+
+    public Integer getLoggedInUsername() {
+        User loggedInUser = getLoggedInUser();
+        Integer id = (loggedInUser.getId());
+            if (id>0) {
+                return id;
+            }
+        return 0;
+    }
+
+    public User getLoggedInUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            String email = authentication.getName();  // this returns the username (typically from the `sub` claim)
+            Optional<User> user = userRepository.findByEmail(email);
+            if (user.isPresent()) {
+                return user.get();
+            }
+        }
+        return null;
     }
 }

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Results</title>
+    <style>
+        /* Include same styles as the home page for consistency */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            margin: 20px;
+            gap: 20px;
+        }
+        .main-content {
+            width: 100%;
+            margin: auto;
+            max-width: 800px;
+        }
+        .filter-options {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .filter-option {
+            cursor: pointer;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+        .filter-option:hover {
+            background-color: #f0f0f0;
+        }
+        .filter-option.active {
+            font-weight: bold;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            margin: 0 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="header.html"></div>
+
+    <div class="main-content">
+        <h1>Search Results for "<span th:text="${query}"></span>"</h1>
+
+        <!-- Filter Options -->
+        <div class="filter-options">
+            <span>Sort By:</span>
+            <a th:href="'/search?query=' + ${query} + '&filter=latest'" 
+            th:classappend="${filter == 'latest'} ? 'active' : ''" 
+            class="filter-option">Latest</a>
+            <a th:href="'/search?query=' + ${query} + '&filter=oldest'" 
+            th:classappend="${filter == 'oldest'} ? 'active' : ''" 
+            class="filter-option">Oldest</a>
+            <a th:href="'/search?query=' + ${query} + '&filter=views'" 
+            th:classappend="${filter == 'views'} ? 'active' : ''" 
+            class="filter-option">Most Viewed</a>
+        </div>
+
+
+        <!-- Blog Posts -->
+        <div>
+            <p th:if="${#lists.isEmpty(blogPosts)}">No results found for "<span th:text="${query}"></span>".</p>
+            <div th:each="blogPost : ${blogPosts}" style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+                <h2 th:text="${blogPost.title}"></h2>
+                <p>Author: <span th:text="${blogPost.authorName}"></span></p>
+                <p th:utext="${blogPost.excerpt}"></p>
+                <a th:href="@{'/blog/' + ${blogPost.slug}}" style="color: #4CAF50;">Read More</a>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a th:if="${currentPage > 0}" th:href="'/search?query=' + ${query} + '&filter=' + ${filter} + '&page=' + (${currentPage - 1})">Previous</a>
+            <span>Page <span th:text="${currentPage + 1}"></span> of <span th:text="${totalPages}"></span></span>
+            <a th:if="${currentPage + 1 < totalPages}" th:href="'/search?query=' + ${query} + '&filter=' + ${filter} + '&page=' + (${currentPage + 1})">Next</a>
+        </div>
+    </div>
+</body>
+</html>

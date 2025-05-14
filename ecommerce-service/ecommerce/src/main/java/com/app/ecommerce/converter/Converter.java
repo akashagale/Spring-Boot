@@ -1,9 +1,8 @@
 package com.app.ecommerce.converter;
 
-import com.app.ecommerce.dto.CartDto;
-import com.app.ecommerce.dto.CategoryDto;
-import com.app.ecommerce.dto.ProductDto;
+import com.app.ecommerce.dto.*;
 import com.app.ecommerce.entity.Cart;
+import com.app.ecommerce.entity.CartProduct;
 import com.app.ecommerce.entity.Category;
 import com.app.ecommerce.entity.Product;
 
@@ -87,4 +86,42 @@ public class Converter {
         cart.setCartProducts(cartDto.getCartProducts());
         return cart;
     }
+
+    public static List<CartProductDto> CartProductListToCartProductDtoList(List<CartProduct> cartList) {
+        ArrayList<CartProductDto> cartProductDtoList = new ArrayList<>();
+        for (CartProduct cartProduct : cartList) {
+            cartProductDtoList.add(CartProductToCartProductDto(cartProduct));
+        }
+        return cartProductDtoList;
+    }
+
+    public static CartProductDto CartProductToCartProductDto(CartProduct cartProduct) {
+        CartProductDto cartProductDto = new CartProductDto();
+        cartProductDto.setCpId(cartProduct.getCpId());
+        cartProductDto.setCartDto(CartToCartDto(cartProduct.getCart()));
+        cartProductDto.setProductDto(ProductToProductDto(cartProduct.getProduct()));
+        cartProductDto.setQuantity(cartProduct.getQuantity());
+        return cartProductDto;
+    }
+
+    public static CartDto OptionalCartToCartDto(Optional<Cart> optionalCart) {
+        CartDto cartDto = new CartDto();
+        cartDto.setCartId(optionalCart.get().getCartId());
+        Double totalAmmount = 0.0;
+
+        List<Product> product = new ArrayList<>();
+
+        for (int i=0; i<optionalCart.get().getCartProducts().size(); i++){
+            product.add(optionalCart.get().getCartProducts().get(i).getProduct());
+        }
+        for (int i=0; i<product.size(); i++){
+            totalAmmount = totalAmmount + product.get(i).getPrice() * optionalCart.get().getCartProducts().get(i).getQuantity();
+        }
+
+        cartDto.setTotalAmount(totalAmmount);
+        cartDto.setCartProducts(optionalCart.get().getCartProducts());
+
+        return cartDto;
+    }
+
 }

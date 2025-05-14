@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "cart_id", "product_id" }) })
+@Table(name = "cart_product",uniqueConstraints = { @UniqueConstraint(columnNames = { "cart_id", "product_id" }) })
 public class CartProduct {
 
     @Id
@@ -32,5 +32,45 @@ public class CartProduct {
         this.product = product;
     }
 
+    public Integer getCpId() {
+        return cpId;
+    }
 
+    public void setCpId(Integer cpId) {
+        this.cpId = cpId;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "CartProduct{" +
+                "cpId=" + cpId +
+                ", cart=" + cart +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

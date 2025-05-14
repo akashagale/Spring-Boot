@@ -34,7 +34,8 @@ public class PublicController {
 
     @GetMapping("/searchby")
     public ResponseEntity<List<ProductDto>> searchByProductNameOrCategory
-            (@RequestParam(name = "keyword", required = true) String keyword) {
+            (@RequestParam(name = "keyword", required = false) String keyword) {
+        if (keyword == null || keyword.isEmpty()) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         List<ProductDto> productDtoList = this.publicService.searchProductNameOrCategoryName(keyword);
         return new ResponseEntity<>(productDtoList, HttpStatus.OK);
     }

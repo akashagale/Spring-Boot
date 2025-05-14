@@ -60,6 +60,9 @@ public class SecurityConfig {
         http.authorizeHttpRequests((authorize) ->
                         //authorize.anyRequest().authenticated()
                         authorize.requestMatchers("/api/public/**").permitAll()
+                                .requestMatchers("/api/public/auth/**").permitAll()
+//                                .requestMatchers(HttpMethod.POST,"/api/public/register").permitAll()
+
 //                                .requestMatchers("/api/auth/consumer/**").hasAuthority("CONSUMER")
                                 .anyRequest().authenticated()
 

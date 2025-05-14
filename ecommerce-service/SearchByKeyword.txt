@@ -27,3 +27,10 @@ Only the fields defined in the Product entity are returned.
 
 
 =======================================================================================================================
+
+
+Retrieving the Cart data from user id when the User class is ignore in the Class entity
+
+
+@Query("SELECT c FROM Cart c WHERE c.user.id = :userId")
+    Optional<Cart> findCartByUserId(@Param("userId") Integer userId);

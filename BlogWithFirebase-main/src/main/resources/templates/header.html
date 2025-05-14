@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #4CAF50, #43A047);
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header .logo {
+            font-weight: bold;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header form {
+            display: flex;
+            align-items: center;
+        }
+
+        header form input[type="text"] {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-right: 10px;
+            outline: none;
+            font-size: 0.95rem;
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+
+        header form input[type="text"]:focus {
+            border-color: #43A047;
+            box-shadow: 0 0 8px rgba(67, 160, 71, 0.5);
+        }
+
+        header form button {
+            padding: 10px 20px;
+            border: none;
+            background-color: white;
+            color: #4CAF50;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header form button:hover {
+            background-color: #43A047;
+            color: white;
+        }
+
+        header .user-info a {
+            text-decoration: none;
+            color: white;
+            margin-left: 20px;
+            font-size: 0.95rem;
+            padding: 10px 15px;
+            border: 1px solid transparent;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        header .user-info a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header>
+        <!-- Logo -->
+        <div class="logo">
+            <a href="/" style="color: inherit; text-decoration: none;">COOLWEBSITE</a>
+        </div>
+
+        <!-- Search -->
+        <form action="/search" method="get">
+            <input type="text" name="query" placeholder="Search blog posts">
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- User Info -->
+        <div class="user-info">
+            <a th:href="@{/user/{username}(username=${#authentication.name})}" title="View Profile" sec:authorize="isAuthenticated()"><span th:text="${#authentication.name}"></span></a>
+			<a th:href="@{/login}" sec:authorize="isAnonymous()">Login</a>
+        </div>
+    </header>
+</body>
+
+</html>
