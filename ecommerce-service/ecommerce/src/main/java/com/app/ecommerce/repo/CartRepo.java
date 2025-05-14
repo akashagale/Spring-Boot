@@ -1,6 +1,7 @@
 package com.app.ecommerce.repo;
 
 import com.app.ecommerce.entity.Cart;
+<<<<<<< HEAD
 import com.app.ecommerce.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -42,3 +43,9 @@ public interface CartRepo extends JpaRepository<Cart, Integer> {
     @Query("SELECT c FROM Cart c WHERE c.user.id = :userId")
     Optional<Cart> findCartByUserId(@Param("userId") Integer userId);
 }
+=======
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CartRepo extends JpaRepository<Cart, Integer> {
+}
+>>>>>>> 416287238779966ee38873478f3f428b06de9974

@@ -25,7 +25,11 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
         String  token = authService.login(loginDto);
+<<<<<<< HEAD
         if (token == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials!!");
+=======
+        if (token == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+>>>>>>> 416287238779966ee38873478f3f428b06de9974
         return ResponseEntity.status(HttpStatus.OK).body(token);
     }
 

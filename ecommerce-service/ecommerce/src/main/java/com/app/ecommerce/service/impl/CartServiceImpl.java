@@ -2,6 +2,7 @@ package com.app.ecommerce.service.impl;
 
 import com.app.ecommerce.converter.Converter;
 import com.app.ecommerce.dto.CartDto;
+<<<<<<< HEAD
 import com.app.ecommerce.dto.CartProductDto;
 import com.app.ecommerce.dto.PostCartDto;
 import com.app.ecommerce.entity.*;
@@ -18,10 +19,19 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+=======
+import com.app.ecommerce.entity.Cart;
+import com.app.ecommerce.repo.CartRepo;
+import com.app.ecommerce.service.CartService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+>>>>>>> 416287238779966ee38873478f3f428b06de9974
 
 @Service
 public class CartServiceImpl implements CartService {
 
+<<<<<<< HEAD
     Logger logger= LoggerFactory.getLogger(CartServiceImpl.class);
 
     private final CartRepo cartRepo;
@@ -99,6 +109,27 @@ public class CartServiceImpl implements CartService {
 
         cart.setTotalAmount(cart.getTotalAmount() + product.getPrice());
         cartRepo.save(cart);
+=======
+    private final CartRepo cartRepo;
+
+    public CartServiceImpl(CartRepo cartRepo) {
+        this.cartRepo = cartRepo;
+    }
+
+    @Override
+    public List<CartDto> getCart() {
+        List<Cart> cartList = this.cartRepo.findAll();
+        if (cartList.isEmpty()) return null;
+        return Converter.CartListToCartDtoList(cartList);
+    }
+
+    @Override
+    public CartDto postCart(CartDto cartDto) {
+        boolean existsById = this.cartRepo.existsById(cartDto.getCartId());
+        if (existsById) return null;
+        Cart savedCart = this.cartRepo.save(Converter.CartDtoToCart(cartDto));
+        return savedCart == null ? null : Converter.CartToCartDto(savedCart);
+>>>>>>> 416287238779966ee38873478f3f428b06de9974
     }
 
     @Override

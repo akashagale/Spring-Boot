@@ -19,8 +19,11 @@ public class Cart {
 
     @JsonIgnore
     @OneToOne
+<<<<<<< HEAD
     @JoinColumn(name = "user_Id",unique = true
     )
+=======
+>>>>>>> 416287238779966ee38873478f3f428b06de9974
     private User user;
 
     @OneToMany(mappedBy = "cart")
@@ -74,7 +77,11 @@ public class Cart {
         return "Cart{" +
                 "cartId=" + cartId +
                 ", totalAmount=" + totalAmount +
+<<<<<<< HEAD
                 ", cartProductsCount=" + (cartProducts != null ? cartProducts.size() : 0) +
+=======
+                ", cartProducts=" + cartProducts +
+>>>>>>> 416287238779966ee38873478f3f428b06de9974
                 '}';
     }
 }
