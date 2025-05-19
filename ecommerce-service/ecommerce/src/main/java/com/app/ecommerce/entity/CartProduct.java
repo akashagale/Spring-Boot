@@ -5,11 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-<<<<<<< HEAD
 @Table(name = "cart_product",uniqueConstraints = { @UniqueConstraint(columnNames = { "cart_id", "product_id" }) })
-=======
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "cart_id", "product_id" }) })
->>>>>>> 416287238779966ee38873478f3f428b06de9974
+//@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "cart_id", "product_id" }) })
 public class CartProduct {
 
     @Id
@@ -36,7 +33,6 @@ public class CartProduct {
         this.product = product;
     }
 
-<<<<<<< HEAD
     public Integer getCpId() {
         return cpId;
     }
@@ -69,18 +65,13 @@ public class CartProduct {
         this.quantity = quantity;
     }
 
-=======
->>>>>>> 416287238779966ee38873478f3f428b06de9974
     @Override
     public String toString() {
         return "CartProduct{" +
                 "cpId=" + cpId +
-<<<<<<< HEAD
                 ", product=" + (product != null ? product.getProductName() : null) +
-=======
                 ", cart=" + cart +
                 ", product=" + product +
->>>>>>> 416287238779966ee38873478f3f428b06de9974
                 ", quantity=" + quantity +
                 '}';
     }

@@ -1,0 +1,294 @@
+{
+  "version": 6,
+  "entities": [
+    {
+      "entity": {
+        "type": "Project",
+        "id": "53337fd6-268b-4596-b167-39a0ba483e37",
+        "name": "E-Commerce App"
+      },
+      "children": [
+        {
+          "entity": {
+            "type": "Service",
+            "id": "b44c3f0a-54d0-46c3-8450-98d7a1102ad7",
+            "name": "Login/Register"
+          },
+          "children": [
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+                  "name": "POST"
+                },
+                "body": {
+                  "bodyType": "Text",
+                  "textBody": "{\n  \"name\": \"test1\",\n  \"username\": \"test1\",\n  \"email\": \"test1@gmail.com\",\n  \"password\":\"test1\" \n}  "
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:9999",
+                  "path": "/api/public/auth/register"
+                },
+                "id": "b3a21840-790b-4a5c-9f42-c140c4f1b3bb",
+                "name": "User register",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "assertions": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "https://tools.ietf.org/html/rfc7231#section-4.3",
+                  "name": "POST"
+                },
+                "body": {
+                  "bodyType": "Text",
+                  "textBody": "{\n    \"username\" : \"Consumer\",\n    \"password\" :  \"Consumer\"\n}"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:9999",
+                  "path": "/api/public/auth/login"
+                },
+                "id": "0ab2638d-06a4-43a7-9c36-ec8531e8ff16",
+                "name": "login",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "assertions": []
+              }
+            }
+          ]
+        },
+        {
+          "entity": {
+            "type": "Service",
+            "id": "a5e32aa6-c86b-4996-8fcb-c29bc470c1a0",
+            "name": "Public"
+          },
+          "children": [
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "https://tools.ietf.org/html/rfc7231#section-4.3",
+                  "name": "GET"
+                },
+                "body": {
+                  "bodyType": "Text",
+                  "textBody": ""
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": [
+                      {
+                        "enabled": true,
+                        "name": "keyword",
+                        "value": "t"
+                      }
+                    ]
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:9999",
+                  "path": "/api/public/searchby"
+                },
+                "id": "af4a18bb-ee18-4c13-b715-ceeb7d2a3c5e",
+                "name": "product/search/keyword",
+                "headers": [],
+                "assertions": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "https://tools.ietf.org/html/rfc7231#section-4.3",
+                  "name": "GET"
+                },
+                "body": {
+                  "bodyType": "Text",
+                  "textBody": ""
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:9999",
+                  "path": "/api/public/product/1"
+                },
+                "id": "fddd329b-ecef-4ebd-b61d-510d183d6efb",
+                "name": "product/{id}",
+                "headers": [],
+                "assertions": []
+              }
+            }
+          ]
+        },
+        {
+          "entity": {
+            "type": "Service",
+            "id": "e0ff4ad3-5591-4e83-8974-3132820b980b",
+            "name": "consumer"
+          },
+          "children": [
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "https://tools.ietf.org/html/rfc7231#section-4.3",
+                  "name": "GET"
+                },
+                "body": {
+                  "bodyType": "Text",
+                  "textBody": ""
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:9999",
+                  "path": "/api/auth/consumer/cart"
+                },
+                "id": "1dc9d458-1185-4158-9119-33dbc2632338",
+                "name": "GET consumer/cart",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3NDc2NTc2MjgsImV4cCI6MTc0NzY2MDYyOCwic3ViIjoiY29uc3VtZXJAZ21haWwuY29tIn0.wgDvDwZPHdeRpDYsDPk4xKkY3Fqoafy18PLFecSrnj2uVxJh69_AJmTYolvsXG8pgiOQsccyJgZ4fvHKKKxkuQ"
+                  }
+                ],
+                "assertions": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+                  "name": "POST"
+                },
+                "body": {
+                  "bodyType": "Text",
+                  "textBody": "{\n  \"productId\": 11,\n  \"category\": {\n    \"categoryName\": \"Home\",\n    \"categoryId\": 2\n  },\n  \"price\": 299.99,\n  \"productName\": \"Bluetooth Speaker\"\n}\n"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:9999",
+                  "path": "/api/auth/consumer/postcart"
+                },
+                "id": "516b4c1c-bab1-4f81-a241-b22d9d32b603",
+                "name": "POST consumer/cart",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3NDc2NTc2MjgsImV4cCI6MTc0NzY2MDYyOCwic3ViIjoiY29uc3VtZXJAZ21haWwuY29tIn0.wgDvDwZPHdeRpDYsDPk4xKkY3Fqoafy18PLFecSrnj2uVxJh69_AJmTYolvsXG8pgiOQsccyJgZ4fvHKKKxkuQ"
+                  },
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "assertions": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.4",
+                  "name": "PUT"
+                },
+                "body": {
+                  "bodyType": "Text",
+                  "textBody": "{ \"product\":{\"productId\": 10,\n  \"category\": {\n    \"categoryName\": \"Home\",\n    \"categoryId\": 2},\n  \"price\": 299.99,\n  \"productName\": \"Bluetooth Speaker\"}, \n \"quantity\":3}\n"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:9999",
+                  "path": "/api/auth/consumer/putcart"
+                },
+                "id": "4fc49f7b-8fe0-4238-8981-20a64db67dd4",
+                "name": "PUT consumer/cart",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3NDc2NzIwMjksImV4cCI6MTc0NzY3NTAyOSwic3ViIjoiY29uc3VtZXJAZ21haWwuY29tIn0.82WIKj73q1fZ19QmV_YVWvqRKkR6GPFD8AXDa8xtn6_Q2DuMmuyX33tMYygR47uy5MjsvjEEJLhOG9lAGlE1og"
+                  },
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "assertions": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

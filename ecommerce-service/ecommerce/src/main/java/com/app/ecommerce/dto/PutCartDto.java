@@ -1,60 +1,39 @@
 package com.app.ecommerce.dto;
 
 public class PutCartDto {
-    private Integer productId;
-    private PostCategoryDto category;
-    private Double price;
-    private String productName;
+
+    private ProductPutDTO product;
+    private Integer quantity;
 
     public PutCartDto() {
     }
 
-    public PutCartDto(Integer productId, PostCategoryDto category, Double price, String productName) {
-        this.productId = productId;
-        this.category = category;
-        this.price = price;
-        this.productName = productName;
+    public PutCartDto(ProductPutDTO product, Integer quantity) {
+        this.product = product;
+        this.quantity = quantity;
     }
 
-    public String getProductName() {
-        return productName;
+    public ProductPutDTO getProduct() {
+        return product;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProduct(ProductPutDTO product) {
+        this.product = product;
     }
 
-    public Double getPrice() {
-        return price;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public PostCategoryDto getCategory() {
-        return category;
-    }
-
-    public void setCategory(PostCategoryDto category) {
-        this.category = category;
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
-        return "PostCartDto{" +
-                "productId=" + productId +
-                ", category=" + category +
-                ", price=" + price +
-                ", productName='" + productName + '\'' +
+        return "PutCartDto{" +
+                "product=" + product +
+                ", quantity=" + quantity +
                 '}';
     }
 }

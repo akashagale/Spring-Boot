@@ -1,15 +1,12 @@
 package com.app.ecommerce.converter;
 
-<<<<<<< HEAD
 import com.app.ecommerce.dto.*;
 import com.app.ecommerce.entity.Cart;
 import com.app.ecommerce.entity.CartProduct;
-=======
 import com.app.ecommerce.dto.CartDto;
 import com.app.ecommerce.dto.CategoryDto;
 import com.app.ecommerce.dto.ProductDto;
 import com.app.ecommerce.entity.Cart;
->>>>>>> 416287238779966ee38873478f3f428b06de9974
 import com.app.ecommerce.entity.Category;
 import com.app.ecommerce.entity.Product;
 
@@ -93,7 +90,6 @@ public class Converter {
         cart.setCartProducts(cartDto.getCartProducts());
         return cart;
     }
-<<<<<<< HEAD
 
     public static List<CartProductDto> CartProductListToCartProductDtoList(List<CartProduct> cartList) {
         ArrayList<CartProductDto> cartProductDtoList = new ArrayList<>();
@@ -132,6 +128,4 @@ public class Converter {
         return cartDto;
     }
 
-=======
->>>>>>> 416287238779966ee38873478f3f428b06de9974
 }
