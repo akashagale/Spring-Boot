@@ -21,4 +21,9 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
        OR LOWER(c.category_name) LIKE LOWER(CONCAT('%', :keyword, '%'))
     """, nativeQuery = true)
     List<Product> searchProductsByKeyword(@Param("keyword") String keyword);
+
+    @Query(value = "SELECT EXISTS (SELECT 1 FROM product WHERE product_id = :productId OR product_name = :productName)", nativeQuery = true)
+    int findByIdAndProductName(@Param("productId") int productId,@Param("productName") String productName);
+
+
 }

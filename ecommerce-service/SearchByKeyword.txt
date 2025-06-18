@@ -34,3 +34,86 @@ Retrieving the Cart data from user id when the User class is ignore in the Class
 
 @Query("SELECT c FROM Cart c WHERE c.user.id = :userId")
     Optional<Cart> findCartByUserId(@Param("userId") Integer userId);
+
+=======================================================================================================================
+
+Option 1: Use JPQL (Recommended)
+If you want to use entity names (like CartProduct, cart, etc.), do not set nativeQuery = true.
+
+Update the repository method like this:
+
+@Query("SELECT cp.quantity FROM CartProduct cp WHERE cp.cart.cartId = :cartId")
+int findQuantityByCartId(@Param("cartId") Integer cartId);
+✅ JPQL uses entity names, not table names.
+-------------------------------------------------------------------------------------------------------------------
+Option 2: Fix the native query to use actual table and column names
+If you still want to use native SQL, use real table/column names like this:
+
+
+@Query(value = "SELECT quantity FROM cart_product WHERE cart_id = :cartId", nativeQuery = true)
+int findQuantityByCartId(@Param("cartId") Integer cartId);
+✅ Make sure cart_product table exists in the database.
+===================================================================================================================
+
+
+
+=============================================Store Procedure======================================================
+CREATE DEFINER=`root`@`localhost` PROCEDURE `put_cart_product`(
+    IN in_product_id INT,
+    IN in_product_name VARCHAR(255),
+    IN in_user_id INT,
+    IN in_quantity INT,
+    OUT flag_product_found BOOLEAN,
+    OUT deleted BOOLEAN
+)
+BEGIN
+    DECLARE result_cart_id INT DEFAULT 0;
+    DECLARE cart_product_flag INT DEFAULT 0;
+    SET flag_product_found = FALSE;
+    set deleted = false;
+    
+    IF EXISTS (
+        SELECT 1 
+        FROM product 
+        WHERE product_id = in_product_id 
+        OR product_name = in_product_name
+    ) THEN
+        SELECT c.cart_id 
+        FROM Cart c 
+        WHERE c.user_id = in_user_id 
+        INTO result_cart_id;
+
+        IF (result_cart_id IS NOT NULL AND result_cart_id > 0) THEN
+		--   SET flag = TRUE;
+            SELECT COUNT(*) FROM 
+			cart_product cp
+			INNER Join product p
+			ON cp.product_id = p.product_id
+			WHERE cp.cart_id = result_cart_id and p.product_name = in_product_name 
+            INTO cart_product_flag;
+			
+            IF (cart_product_flag IS NOT NULL AND cart_product_flag > 0)
+				THEN
+					IF(in_quantity != 0) 
+						THEN 
+						UPDATE cart_product 
+						SET quantity  = in_quantity
+						WHERE cart_id = result_cart_id and product_id = in_product_id;
+                        set flag_product_found = true;
+					ELSE 
+						DELETE from cart_product where cart_id = result_cart_id and product_id = in_product_id;
+                        set deleted = true;
+					END IF;
+            ELSE 
+            INSERT INTO cart_product(quantity,cart_id,product_id) values(in_quantity,result_cart_id,in_product_id);
+            set flag_product_found = true;
+            END IF;
+            
+        END IF;
+
+    ELSE
+        SET flag_product_found = FALSE;
+    END IF;
+
+END
+==============================================================================================================================

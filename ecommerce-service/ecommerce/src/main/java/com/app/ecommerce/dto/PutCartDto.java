@@ -2,22 +2,22 @@ package com.app.ecommerce.dto;
 
 public class PutCartDto {
 
-    private ProductPutDTO product;
+    private PutProductDto product;
     private Integer quantity;
 
     public PutCartDto() {
     }
 
-    public PutCartDto(ProductPutDTO product, Integer quantity) {
+    public PutCartDto(PutProductDto product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;
     }
 
-    public ProductPutDTO getProduct() {
+    public PutProductDto getProduct() {
         return product;
     }
 
-    public void setProduct(ProductPutDTO product) {
+    public void setProduct(PutProductDto product) {
         this.product = product;
     }
 
@@ -31,8 +31,7 @@ public class PutCartDto {
 
     @Override
     public String toString() {
-        return "PutCartDto{" +
-                "product=" + product +
+        return "product=" + product +
                 ", quantity=" + quantity +
                 '}';
     }

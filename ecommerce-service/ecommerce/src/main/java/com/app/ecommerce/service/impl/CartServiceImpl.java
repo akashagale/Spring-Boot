@@ -3,20 +3,30 @@ package com.app.ecommerce.service.impl;
 import com.app.ecommerce.converter.Converter;
 import com.app.ecommerce.dto.CartDto;
 import com.app.ecommerce.dto.PostCartDto;
+import com.app.ecommerce.dto.PutCartDto;
 import com.app.ecommerce.entity.*;
 import com.app.ecommerce.exception.ECommerceException;
 import com.app.ecommerce.repo.*;
 import com.app.ecommerce.service.CartService;
 import com.app.ecommerce.utils.JwtUtils;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.ParameterMode;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.StoredProcedureQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.awt.desktop.SystemEventListener;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+
 import com.app.ecommerce.entity.Cart;
 import com.app.ecommerce.repo.CartRepo;
 import com.app.ecommerce.service.CartService;
@@ -27,6 +37,9 @@ import org.springframework.stereotype.Service;
 public class CartServiceImpl implements CartService {
 
     Logger logger= LoggerFactory.getLogger(CartServiceImpl.class);
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     private final CartRepo cartRepo;
     private final CartProductRepo cartProductRepo;
@@ -113,21 +126,39 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public CartDto postCart(CartDto cartDto) {
-        boolean existsById = this.cartRepo.existsById(cartDto.getCartId());
-        if (existsById) return null;
-        Cart savedCart = this.cartRepo.save(Converter.CartDtoToCart(cartDto));
-        return savedCart == null ? null : Converter.CartToCartDto(savedCart);
-    }
+    public CartDto putCart(PutCartDto cartDto) {
 
-    @Override
-    public CartDto putCart(CartDto cartDto) {
-        if (cartDto.getCartId() == null) return null;
+        Integer loggedInId = jwtUtils.getLoggedInUsername();
 
-        boolean existsById = this.cartRepo.existsById(cartDto.getCartId());
-        if (!existsById) return null;
-        Cart updatedCart = this.cartRepo.save(Converter.CartDtoToCart(cartDto));
-        return updatedCart == null ? null : Converter.CartToCartDto(updatedCart);
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("put_cart_product")
+                .registerStoredProcedureParameter("in_product_id", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("in_product_name", String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("in_user_id", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("in_quantity", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("flag_product_found", Boolean.class, ParameterMode.OUT)
+                .registerStoredProcedureParameter("deleted", Boolean.class, ParameterMode.OUT);
+
+        query.setParameter("in_product_id", cartDto.getProduct().getProductId());
+        query.setParameter("in_product_name", cartDto.getProduct().getProductName());
+        query.setParameter("in_user_id", loggedInId);
+        query.setParameter("in_quantity", cartDto.getQuantity());
+        query.execute();
+
+        boolean flagProductFound = (boolean) query.getOutputParameterValue("flag_product_found");
+        boolean deleted = (boolean) query.getOutputParameterValue("deleted");
+
+        if (flagProductFound) {
+            System.out.println("Product quantity updated");
+            return new CartDto(cartDto.getProduct().getProductId(),cartDto.getProduct().getPrice(),null);
+        }else {
+            System.out.println("Product not found");
+        }
+
+        if (deleted) {
+            System.out.println("Product deleted");
+        }
+
+        return null;
     }
 
     @Override

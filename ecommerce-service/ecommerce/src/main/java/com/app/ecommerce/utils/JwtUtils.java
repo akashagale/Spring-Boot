@@ -95,6 +95,8 @@ public class JwtUtils {
         if (authentication != null && authentication.isAuthenticated()) {
             String email = authentication.getName();  // this returns the username (typically from the `sub` claim)
             Optional<User> user = userRepository.findByEmail(email);
+//            user.get().setUsername(null);
+//            user.get().setPassword(null);
             if (user.isPresent()) {
                 return user.get();
             }

@@ -50,9 +50,10 @@ public class ConsumerController {
     @PreAuthorize("hasRole('ROLE_CONSUMER')")
     @PutMapping("/putcart")
     public ResponseEntity<?> putCart (@RequestBody PutCartDto putCartDto) {
-        System.out.println(putCartDto);
-        return null;
-        }
+        CartDto cartDto = this.cartService.putCart(putCartDto);
+        if (cartDto != null) return ResponseEntity.status(HttpStatus.OK).body(cartDto);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
 
     @PreAuthorize("hasRole('ROLE_CONSUMER')")
     @DeleteMapping("/deletecart")
