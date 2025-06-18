@@ -58,6 +58,7 @@ int findQuantityByCartId(@Param("cartId") Integer cartId);
 
 
 =============================================Store Procedure======================================================
+-----------------------------------------------------------------------------------
 CREATE DEFINER=`root`@`localhost` PROCEDURE `put_cart_product`(
     IN in_product_id INT,
     IN in_product_name VARCHAR(255),
@@ -116,4 +117,41 @@ BEGIN
     END IF;
 
 END
+-------------------------------------------------------------------------------
+public CartDto putCart(PutCartDto cartDto) {
+
+        Integer loggedInId = jwtUtils.getLoggedInUsername();
+
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("put_cart_product")
+                .registerStoredProcedureParameter("in_product_id", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("in_product_name", String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("in_user_id", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("in_quantity", Integer.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("flag_product_found", Boolean.class, ParameterMode.OUT)
+                .registerStoredProcedureParameter("deleted", Boolean.class, ParameterMode.OUT);
+
+        query.setParameter("in_product_id", cartDto.getProduct().getProductId());
+        query.setParameter("in_product_name", cartDto.getProduct().getProductName());
+        query.setParameter("in_user_id", loggedInId);
+        query.setParameter("in_quantity", cartDto.getQuantity());
+        query.execute();
+
+        boolean flagProductFound = (boolean) query.getOutputParameterValue("flag_product_found");
+        boolean deleted = (boolean) query.getOutputParameterValue("deleted");
+
+        if (flagProductFound) {
+            System.out.println("Product quantity updated");
+            return new CartDto(cartDto.getProduct().getProductId(),cartDto.getProduct().getPrice(),null);
+        }else {
+            System.out.println("Product not found");
+        }
+
+        if (deleted) {
+            System.out.println("Product deleted");
+        }
+
+        return null;
+    }
+
+
 ==============================================================================================================================
