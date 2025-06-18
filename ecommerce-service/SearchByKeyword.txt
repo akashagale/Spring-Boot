@@ -57,7 +57,7 @@ int findQuantityByCartId(@Param("cartId") Integer cartId);
 
 
 
-=============================================Store Procedure======================================================
+=============================================Stored Procedure======================================================
 -----------------------------------------------------------------------------------
 CREATE DEFINER=`root`@`localhost` PROCEDURE `put_cart_product`(
     IN in_product_id INT,
