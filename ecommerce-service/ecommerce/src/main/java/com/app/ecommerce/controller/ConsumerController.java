@@ -1,8 +1,6 @@
 package com.app.ecommerce.controller;
 
-import com.app.ecommerce.dto.CartDto;
-import com.app.ecommerce.dto.PostCartDto;
-import com.app.ecommerce.dto.PutCartDto;
+import com.app.ecommerce.dto.*;
 import com.app.ecommerce.exception.ECommerceException;
 import com.app.ecommerce.service.CartService;
 import org.springframework.http.HttpStatus;
@@ -56,8 +54,9 @@ public class ConsumerController {
     }
 
     @PreAuthorize("hasRole('ROLE_CONSUMER')")
-    @DeleteMapping("/deletecart")
-    public ResponseEntity<Object> deleteCart () {
-        return null;
+    @PostMapping("/deletecart")
+    public ResponseEntity<Object> deleteCart (@RequestBody ProductDeleteRequest dto) {
+        this.cartService.deleteCartRepoByProductId(dto.getProduct().getProductId());
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }

@@ -1,6 +1,6 @@
 package com.app.ecommerce.dto;
 
-public class CategoryPutDTO {
+public class CategoryPutDto {
     private Long categoryId;
     private String categoryName;
 }

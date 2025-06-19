@@ -1,19 +1,17 @@
 package com.app.ecommerce.dto;
 
-import lombok.Getter;
 
-
-public class ProductPutDTO {
+public class ProductPutDto {
 
     private Long productId;
     private String productName;
     private double price;
-    private CategoryPutDTO category;
+    private CategoryDeleteDto category;
 
-    public ProductPutDTO() {
+    public ProductPutDto() {
     }
 
-    public ProductPutDTO(Long productId, String productName, double price, CategoryPutDTO category) {
+    public ProductPutDto(Long productId, String productName, double price, CategoryDeleteDto category) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
@@ -44,11 +42,11 @@ public class ProductPutDTO {
         this.price = price;
     }
 
-    public CategoryPutDTO getCategory() {
+    public CategoryDeleteDto getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryPutDTO category) {
+    public void setCategory(CategoryDeleteDto category) {
         this.category = category;
     }
 

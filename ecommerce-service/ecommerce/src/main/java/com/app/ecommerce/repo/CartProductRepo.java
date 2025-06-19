@@ -33,4 +33,12 @@ public interface CartProductRepo extends JpaRepository<CartProduct, Integer> {
             "WHERE cp.cart_id = :cartId",
             nativeQuery = true)
     List<CartProduct> findCartProductByCartId(@Param("cartId") int cartId);
+
+    @Query(value = "SELECT 1 FROM cart_product cp WHERE cp.product_id = :productId", nativeQuery = true)
+    Integer existsCartProductByProductId(@Param("productId") Integer productId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM cart_product cp WHERE cp.product_id = :productId", nativeQuery = true)
+    void deleteCartRepoByProductId(@Param("productId") Integer productId);
 }

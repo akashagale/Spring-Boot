@@ -3,6 +3,7 @@ package com.app.ecommerce.service.impl;
 import com.app.ecommerce.converter.Converter;
 import com.app.ecommerce.dto.CartDto;
 import com.app.ecommerce.dto.PostCartDto;
+import com.app.ecommerce.dto.ProductDeleteDto;
 import com.app.ecommerce.dto.PutCartDto;
 import com.app.ecommerce.entity.*;
 import com.app.ecommerce.exception.ECommerceException;
@@ -15,6 +16,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.StoredProcedureQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -162,10 +164,11 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Object deleteCart(CartDto cartDto) {
-        boolean existsById = this.cartRepo.existsById(cartDto.getCartId());
-        if (!existsById) return null;
-        this.cartRepo.deleteById(cartDto.getCartId());
-        return "User {} deleted successfully! ".formatted(cartDto.getCartId());
+    public Object deleteCartRepoByProductId(Integer productId) {
+        Integer existsById = this.cartProductRepo.existsCartProductByProductId(productId);
+        if (existsById == 0) return null;
+
+        this.cartProductRepo.deleteCartRepoByProductId(productId);
+        return "User {} deleted successfully! ".formatted(productId);
     }
 }

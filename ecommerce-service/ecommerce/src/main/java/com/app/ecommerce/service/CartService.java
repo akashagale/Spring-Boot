@@ -1,9 +1,7 @@
 package com.app.ecommerce.service;
 
-import com.app.ecommerce.dto.CartDto;
-import com.app.ecommerce.dto.CartProductDto;
-import com.app.ecommerce.dto.PostCartDto;
-import com.app.ecommerce.dto.PutCartDto;
+import com.app.ecommerce.dto.*;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -12,6 +10,6 @@ public interface CartService {
     public void postCart(Integer productId,PostCartDto cartDto);
     public List<CartDto> getCart();
     public CartDto putCart(PutCartDto cartDto);
-    public Object deleteCart(CartDto cartDto);
+    public Object deleteCartRepoByProductId(Integer productId);
 
 }
